@@ -6,19 +6,12 @@ This project demonstrates a complete **Machine Learning + MLOps workflow** for d
 ## ✅ Key Features
 
 - Structured, production-style **pipeline** with **logging**, **exceptions**, and **artifacts**
-
 - **ETL Pipeline**: Extract data from **MongoDB**, transform it **(imputation, preprocessing, feature engineering)**, and load it into the pipeline for model training
-
 - **FastAPI** service for training and prediction (/train, /predict)
-
 - **MLflow** integration for experiments (parameters, metrics, and artifacts)
-
 - **Containerized with Docker** for easy deployment
-
 - **AWS deployment** workflow: **EC2**, **ECR**, and **S3 storage**
-
 - GitHub Actions workflows for **CI/CD** included
-
 - Utilities to sync artifacts to/from **S3**
 
 ---
