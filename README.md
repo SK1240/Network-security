@@ -44,3 +44,43 @@ Network-Security/
 ├── valid_data/             # curated/validated CSVs for quick tests    
 └── networksecurity/        # Core ML pipeline (see below) 
 ```
+
+---
+
+## 🧠 Core ML Pipeline – `networksecurity/`
+
+```
+networksecurity/
+├── cloud/
+│   └── s3_syncer.py           # Sync local folders with S3
+│
+├── components/
+│   ├── data_ingestion.py      # Pull from MongoDB, split train/test
+│   ├── data_validation.py     # Schema checks, nulls, drift detection
+│   ├── data_transformation.py # Preprocessing, imputation
+│   └── model_trainer.py       # Train model, log via MLflow
+│
+├── constant/
+│   └── training_pipeline/__init__.py
+│       # Configs: TARGET_COLUMN, PIPELINE_NAME, ARTIFACT_DIR, FILE_NAME
+│
+├── entity/
+│   ├── config_entity.py       # Config objects
+│   └── artifact_entity.py     # Pipeline artifact objects
+│
+├── exception/
+│   └── exception.py           # Custom exception handling
+│
+├── logging/
+│   └── logger.py              # Logging utility
+│
+├── pipeline/
+│   ├── training_pipeline.py   # Orchestrates all steps
+│   └── batch_prediction.py    # Batch prediction runner
+│
+└── utils/
+    ├── main_utils/utils.py    # Save/load objects, metrics, YAML utils
+    └── ml_utils/
+        ├── metric/classification_metric.py
+        └── model/estimator.py # Preprocessor + model wrapper
+```
