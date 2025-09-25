@@ -244,6 +244,7 @@ aws configure
 ```
 👉 Enter your **AWS Access Key**, **Secret Key**, **Region** when prompted.
 
+
 ### 🏷️ 4. Login to Amazon ECR
 AWS_REGION=us-east-1
 AWS_ECR_LOGIN_URI=788614365622.dkr.ecr.$AWS_REGION.amazonaws.com
@@ -251,3 +252,11 @@ ECR_REPOSITORY_NAME=networkssecurity
 
 aws ecr get-login-password --region $AWS_REGION \
 | docker login --username AWS --password-stdin $AWS_ECR_LOGIN_URI
+
+
+### 📦 5. Build & Push Docker Image
+```
+docker build -t $ECR_REPOSITORY_NAME:latest .
+docker tag $ECR_REPOSITORY_NAME:latest $AWS_ECR_LOGIN_URI/$ECR_REPOSITORY_NAME:latest
+docker push $AWS_ECR_LOGIN_URI/$ECR_REPOSITORY_NAME:latest
+```
