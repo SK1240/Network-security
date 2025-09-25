@@ -260,3 +260,10 @@ docker build -t $ECR_REPOSITORY_NAME:latest .
 docker tag $ECR_REPOSITORY_NAME:latest $AWS_ECR_LOGIN_URI/$ECR_REPOSITORY_NAME:latest
 docker push $AWS_ECR_LOGIN_URI/$ECR_REPOSITORY_NAME:latest
 ```
+
+### 🚀 6. Run Container on EC2
+```
+docker run -d --name netsec -p 5000:5000 \
+  --env-file .env \
+  $AWS_ECR_LOGIN_URI/$ECR_REPOSITORY_NAME:latest
+```
