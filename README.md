@@ -216,3 +216,13 @@ mlflow ui --host 0.0.0.0 --port 5001
 ➡️ Open http://127.0.0.1:5001 in your browser
 
 For DagsHub MLflow → set `MLFLOW_TRACKING_URI`, `USERNAME`, `PASSWORD` in `.env`
+
+---
+
+## ☁️ AWS Deployment (EC2 + Docker + ECR)
+### 🔑 1. Connect to EC2 Instance
+Replace <EC2-IP> with your **EC2 public IPv4 address**, and `your-key.pem` with your private key file:
+```
+chmod 400 your-key.pem   # set proper permissions first
+ssh -i "your-key.pem" ubuntu@<EC2-IP>
+```
