@@ -220,14 +220,14 @@ For DagsHub MLflow → set `MLFLOW_TRACKING_URI`, `USERNAME`, `PASSWORD` in `.en
 ---
 
 ## ☁️ AWS Deployment (EC2 + Docker + ECR)
-### 🔑 1. Connect to EC2 Instance
+## 🔑 1. Connect to EC2 Instance
 Replace <EC2-IP> with your **EC2 public IPv4 address**, and `your-key.pem` with your private key file:
 ```
 chmod 400 your-key.pem   # set proper permissions first
 ssh -i "your-key.pem" ubuntu@<EC2-IP>
 ```
 
-### 🐳 2. Install Docker on EC2
+## 🐳 2. Install Docker on EC2
 ```
 sudo apt-get update -y
 sudo apt-get upgrade -y
@@ -238,14 +238,14 @@ newgrp docker
 docker --version
 ``` 
 
-### 🔧 3. Configure AWS CLI
+## 🔧 3. Configure AWS CLI
 ```
 aws configure
 ```
 👉 Enter your **AWS Access Key**, **Secret Key**, **Region** when prompted.
 
 
-### 🏷️ 4. Login to Amazon ECR
+## 🏷️ 4. Login to Amazon ECR
 AWS_REGION=us-east-1
 AWS_ECR_LOGIN_URI=788614365622.dkr.ecr.$AWS_REGION.amazonaws.com
 ECR_REPOSITORY_NAME=networkssecurity
@@ -254,14 +254,14 @@ aws ecr get-login-password --region $AWS_REGION \
 | docker login --username AWS --password-stdin $AWS_ECR_LOGIN_URI
 
 
-### 📦 5. Build & Push Docker Image
+## 📦 5. Build & Push Docker Image
 ```
 docker build -t $ECR_REPOSITORY_NAME:latest .
 docker tag $ECR_REPOSITORY_NAME:latest $AWS_ECR_LOGIN_URI/$ECR_REPOSITORY_NAME:latest
 docker push $AWS_ECR_LOGIN_URI/$ECR_REPOSITORY_NAME:latest
 ```
 
-### 🚀 6. Run Container on EC2
+## 🚀 6. Run Container on EC2
 ```
 docker run -d --name netsec -p 5000:5000 \
   --env-file .env \
