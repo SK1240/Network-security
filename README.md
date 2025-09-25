@@ -267,3 +267,8 @@ docker run -d --name netsec -p 5000:5000 \
   --env-file .env \
   $AWS_ECR_LOGIN_URI/$ECR_REPOSITORY_NAME:latest
 ```
+
+## ❤️ 7. Health Check (Verify API)
+curl http://127.0.0.1:5000/train
+
+👉 Now, your FastAPI app is running inside Docker on EC2 and exposed at port `5000`.
