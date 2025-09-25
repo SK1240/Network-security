@@ -114,3 +114,16 @@ MLFLOW_TRACKING_USERNAME
 MLFLOW_TRACKING_PASSWORD    
 MONGO_DB_URL   # or MONGODB_URL_KEY 
 
+---
+
+## 🧭 Config Changes Before Run    
+
+Open `networksecurity/constant/training_pipeline/__init__.py` and review:    
+
+- TARGET_COLUMN = "Result"    
+- FILE_NAME = "phisingData.csv"    
+- ARTIFACT_DIR = "Artifacts"    
+- MODEL_TRAINER_EXPECTED_SCORE = 0.60    
+- TRAINING_BUCKET_NAME = "your-s3-bucket-name"    
+    
+---   
