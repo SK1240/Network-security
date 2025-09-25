@@ -272,3 +272,42 @@ docker run -d --name netsec -p 5000:5000 \
 curl http://127.0.0.1:5000/train
 
 👉 Now, your FastAPI app is running inside Docker on EC2 and exposed at port `5000`.
+
+
+# 📤 Sync Artifacts to S3
+## Push local Artifacts/ to S3    
+python -c "from networksecurity.cloud.s3_syncer import S3Sync as S; \    
+S().sync_folder_to_s3('Artifacts','s3://your-bucket/networksecurity')"  
+
+👉 This uploads all your local Artifacts/ files to the specified S3 bucket for safe storage and future use.
+
+
+## Pull from S3    
+python -c "from networksecurity.cloud.s3_syncer import S3Sync as S; \    
+S().sync_folder_from_s3('Artifacts','s3://your-bucket/networksecurity')"    
+    
+
+👉 This downloads your saved Artifacts/ back from S3 into your local project, ensuring you can reuse models and preprocessing pipelines.
+
+## 🧩 Stage Notes    
+    
+- **Data Ingestion** → Mongo → feature_store → train/test split    
+- **Validation** → schema, null check, drift (KS test)    
+- **Transformation** → KNNImputer, preprocessing.pkl    
+- **Training** → MLflow logs, model.pkl    
+- **Evaluation** → evaluation.yaml    
+- **Serving** → final_model/, FastAPI `/train` `/predict`    
+        
+---    
+    
+## 🔮 Roadmap    
+    
+- Batch prediction CLI    
+- Streamlit dashboard    
+- Drift alerts (GitHub Actions + Slack/Discord)    
+- BERT-based phishing detection    
+        
+---    
+        
+## 📜 License    
+For educational & research use only. Validate before production.
