@@ -155,3 +155,31 @@ nano .env
 
 ---    
     
+## 🗄️ MongoDB – Load Data
+### ✅ Test Connection
+```
+python test_mongodb.py
+```
+
+### 📤 Push Data to MongoDB
+```
+python push_data.py
+```
+
+## 🤖 Run Training Pipeline
+### ▶️ Execute End-to-End Pipeline
+```
+python main.py
+```
+### 📂 Artifacts will be created inside Artifacts/<timestamp>/:
+* 📥 data_ingestion/
+
+* 🧐 data_validation/
+
+* 🔄 data_transformation/
+
+* 🏋️ model_trainer/
+
+* 📊 model_evaluation/
+
+* 📦 model_pusher/
