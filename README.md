@@ -84,3 +84,33 @@ networksecurity/
         ├── metric/classification_metric.py
         └── model/estimator.py # Preprocessor + model wrapper
 ```
+
+---
+
+## 🔑 Environment & Secrets(.env / GitHub Secrets)
+
+Local `.env` file (create in repo root):    
+
+MONGO_DB_URL="YOUR_MONGODB_URI"    
+MONGODB_URL_KEY="YOUR_MONGODB_URI"   # used in app.py    
+    
+MLFLOW_TRACKING_URI="https://dagshub.com/<username>/<repo>.mlflow"    
+MLFLOW_TRACKING_USERNAME="<your_username>"    
+MLFLOW_TRACKING_PASSWORD="<your_token>"    
+    
+AWS_ACCESS_KEY_ID="<your_aws_access_key>"    
+AWS_SECRET_ACCESS_KEY="<your_aws_secret_key>"    
+AWS_DEFAULT_REGION="us-east-1"    
+    
+GitHub → Settings → Secrets → Actions:    
+    
+AWS_ACCESS_KEY_ID    
+AWS_SECRET_ACCESS_KEY    
+AWS_REGION = us-east-1        
+AWS_ECR_LOGIN_URI = 788614365622.dkr.ecr.us-east-1.amazonaws.com/networkssecurity    
+ECR_REPOSITORY_NAME = networkssecurity    
+MLFLOW_TRACKING_URI    
+MLFLOW_TRACKING_USERNAME    
+MLFLOW_TRACKING_PASSWORD    
+MONGO_DB_URL   # or MONGODB_URL_KEY 
+
