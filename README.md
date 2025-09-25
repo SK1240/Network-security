@@ -214,4 +214,5 @@ curl -X POST "http://127.0.0.1:5000/predict" \
 mlflow ui --host 0.0.0.0 --port 5001
 ```
 ➡️ Open http://127.0.0.1:5001 in your browser
+
 For DagsHub MLflow → set `MLFLOW_TRACKING_URI`, `USERNAME`, `PASSWORD` in `.env`
