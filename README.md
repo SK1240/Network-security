@@ -131,8 +131,10 @@ Open `networksecurity/constant/training_pipeline/__init__.py` and review:
 ## 🧪 Quick Start (Local)    
     
 # Clone    
+```
 git clone https://github.com/SK1240/Network-security.git    
-cd Network-Security    
+cd Network-Security 
+```   
     
 # Setup venv    
 python -m venv .venv    
