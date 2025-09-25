@@ -154,7 +154,7 @@ nano .env
 ```
 
 ---    
-    
+   
 ## 🗄️ MongoDB – Load Data
 ### ✅ Test Connection
 ```
@@ -171,7 +171,10 @@ python push_data.py
 ```
 python main.py
 ```
-### 📂 Artifacts will be created inside Artifacts/<timestamp>/:
+
+---
+
+## 📂 Artifacts will be created inside Artifacts/<timestamp>/:
 * 📥 data_ingestion/
 
 * 🧐 data_validation/
@@ -183,3 +186,22 @@ python main.py
 * 📊 model_evaluation/
 
 * 📦 model_pusher/
+
+---
+
+## 🚀 Run API (FastAPI)
+### ▶️ Start API Server
+```
+uvicorn app:app --host 0.0.0.0 --port 5000 --reload
+```
+
+### 🏗️ Train via API
+```
+curl -X GET http://127.0.0.1:5000/train
+```
+
+### 🔍 Predict via API (Upload CSV)
+curl -X POST "http://127.0.0.1:5000/predict" \
+     -H "accept: application/json" \
+     -H "Content-Type: multipart/form-data" \
+     -F "file=@valid_data/sample.csv"
