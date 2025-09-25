@@ -226,3 +226,21 @@ Replace <EC2-IP> with your **EC2 public IPv4 address**, and `your-key.pem` with 
 chmod 400 your-key.pem   # set proper permissions first
 ssh -i "your-key.pem" ubuntu@<EC2-IP>
 ```
+
+### 🐳 2. Install Docker on EC2
+```
+sudo apt-get update -y
+sudo apt-get upgrade -y
+curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
+sudo usermod -aG docker ubuntu
+newgrp docker
+docker --version
+``` 
+
+### 🔧 3. Configure AWS CLI
+```
+aws configure
+```
+👉 Enter your **AWS Access Key**, **Secret Key**, **Region** when prompted.
+
