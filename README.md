@@ -128,151 +128,30 @@ Open `networksecurity/constant/training_pipeline/__init__.py` and review:
     
 ---   
      
-## 🧪 Quick Start (Local)    
-    
-# Clone    
+## ⚡ Quick Start (Local Setup)
+
+📂 Clone Repository
 ```
 git clone https://github.com/SK1240/Network-security.git    
 cd Network-Security 
 ```   
     
-# Setup venv    
+### 🛠️ Create Virtual Environment  
+```
 python -m venv .venv    
-.venv\Scripts\activate   # Windows    
-source .venv/bin/activate # Linux/Mac    
+.venv\Scripts\activate     # Windows    
+source .venv/bin/activate  # Linux/Mac   
+``` 
     
-# Install deps    
+### 📦 Install Dependencies  
+```
 pip install -r requirements.txt    
-    
-# Add secrets    
+```
+
+### 🔑 Add Secrets   
+```
 nano .env    
-    
+```
+
 ---    
     
-## 🗄️ MongoDB – Load Data    
-    
-# Test DB    
-python test_mongodb.py    
-    
-# Push source data to MongoDB    
-python push_data.py    
-    
----    
-    
-## 🛠️ Run Training Pipeline    
-    
-# Full training pipeline (CLI)    
-python main.py    
-    
-# Artifacts generated under Artifacts/<timestamp>/    
-#   - data_ingestion/    
-#   - data_validation/    
-#   - data_transformation/    
-#   - model_trainer/    
-#   - model_evaluation/    
-#   - model_pusher/    
-    
----    
-    
-## ⚡ Run API (FastAPI)    
-    
-# Start API    
-uvicorn app:app --host 0.0.0.0 --port 5000 --reload    
-    
-# Train via API    
-curl -X GET http://127.0.0.1:5000/train    
-    
-# Predict via API (upload CSV)    
-curl -X POST "http://127.0.0.1:5000/predict" \    
-     -H "accept: application/json" \    
-     -H "Content-Type: multipart/form-data" \    
-     -F "file=@valid_data/sample.csv"    
-    
----    
-    
-## 🧾 MLflow Experiments    
-    
-# Local MLflow UI    
-mlflow ui --host 0.0.0.0 --port 5001    
-    
-# Open http://127.0.0.1:5001    
-    
-# For DagsHub MLflow:    
-# Set MLFLOW_TRACKING_URI, USERNAME, PASSWORD in .env    
-    
----    
-    
-## ☁️ AWS Deployment (EC2 + Docker + ECR)    
-    
-# SSH into EC2    
-ssh -i "your-key.pem" ubuntu@<EC2-IP>    
-    
-# Install Docker    
-sudo apt-get update -y    
-sudo apt-get upgrade -y    
-curl -fsSL https://get.docker.com -o get-docker.sh    
-sudo sh get-docker.sh    
-sudo usermod -aG docker ubuntu    
-newgrp docker    
-docker --version    
-    
-# Configure AWS    
-aws configure    
-    
-# Login to ECR    
-AWS_REGION=us-east-1    
-AWS_ECR_LOGIN_URI=788614365622.dkr.ecr.us-east-1.amazonaws.com    
-ECR_REPOSITORY_NAME=networkssecurity    
-    
-aws ecr get-login-password --region $AWS_REGION \    
-| docker login --username AWS --password-stdin $AWS_ECR_LOGIN_URI    
-    
-# Build & Push image    
-docker build -t $ECR_REPOSITORY_NAME:latest .    
-docker tag $ECR_REPOSITORY_NAME:latest $AWS_ECR_LOGIN_URI/$ECR_REPOSITORY_NAME:latest    
-docker push $AWS_ECR_LOGIN_URI/$ECR_REPOSITORY_NAME:latest    
-    
-# Run container    
-docker run -d --name netsec -p 5000:5000 \    
-  --env-file .env \    
-  $AWS_ECR_LOGIN_URI/$ECR_REPOSITORY_NAME:latest    
-    
-# Health check    
-curl http://127.0.0.1:5000/train    
-    
----    
-    
-## 📤 Sync Artifacts to S3    
-    
-# Push local Artifacts/ to S3    
-python -c "from networksecurity.cloud.s3_syncer import S3Sync as S; \    
-S().sync_folder_to_s3('Artifacts','s3://your-bucket/networksecurity')"    
-    
-# Pull from S3    
-python -c "from networksecurity.cloud.s3_syncer import S3Sync as S; \    
-S().sync_folder_from_s3('Artifacts','s3://your-bucket/networksecurity')"    
-    
----    
-    
-## 🧩 Stage Notes    
-    
-- **Data Ingestion** → Mongo → feature_store → train/test split    
-- **Validation** → schema, null check, drift (KS test)    
-- **Transformation** → KNNImputer, preprocessing.pkl    
-- **Training** → MLflow logs, model.pkl    
-- **Evaluation** → evaluation.yaml    
-- **Serving** → final_model/, FastAPI `/train` `/predict`    
-        
----    
-    
-## 🔮 Roadmap    
-    
-- Batch prediction CLI    
-- Streamlit dashboard    
-- Drift alerts (GitHub Actions + Slack/Discord)    
-- BERT-based phishing detection    
-        
----    
-        
-## 📜 License    
-For educational & research use only. Validate before production.
