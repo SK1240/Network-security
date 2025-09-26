@@ -276,15 +276,19 @@ curl http://127.0.0.1:5000/train
 
 # 📤 Sync Artifacts to S3
 ## Push local Artifacts/ to S3    
-``python -c "from networksecurity.cloud.s3_syncer import S3Sync as S; \    
-S().sync_folder_to_s3('Artifacts','s3://your-bucket/networksecurity')"`  
+```
+python -c "from networksecurity.cloud.s3_syncer import S3Sync as S; \    
+S().sync_folder_to_s3('Artifacts','s3://your-bucket/networksecurity')"
+```  
 
 👉 This uploads all your local Artifacts/ files to the specified S3 bucket for safe storage and future use.
 
 
 ## Pull from S3    
-`python -c "from networksecurity.cloud.s3_syncer import S3Sync as S; \    
-S().sync_folder_from_s3('Artifacts','s3://your-bucket/networksecurity')"`    
+```
+python -c "from networksecurity.cloud.s3_syncer import S3Sync as S; \    
+S().sync_folder_from_s3('Artifacts','s3://your-bucket/networksecurity')"
+```  
     
 
 👉 This downloads your saved Artifacts/ back from S3 into your local project, ensuring you can reuse models and preprocessing pipelines.
